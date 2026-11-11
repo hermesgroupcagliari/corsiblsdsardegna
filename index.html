@@ -8,7 +8,8 @@
   SITO LAURA CORONA – CORSI BLSD IN SARDEGNA
   Contatti: cellulare/WhatsApp +39 348 880 4992, email info@corsiblsdsardegna.it
   Dominio: www.corsiblsdsardegna.it
-  Ancora da completare: "P.IVA 00000000000" (o rimuovi la riga).
+  Ancora da completare: partita IVA e indirizzo del titolare (piè di pagina e privacy.html).
+  Privacy: privacy.html e cookie.html. Il banner cookie compare solo se compili TRACCIAMENTO in fondo.
   Foto di Laura: file laura-corona.jpg.
   Le date dei corsi si modificano nella lista CORSI, in fondo alla pagina.
   Video della prima pagina: file hero-video.mp4 (immagine di riserva: hero-poster.jpg).
@@ -411,6 +412,7 @@ h4 { font-size: 1.45rem; font-weight: 600; line-height: 1.1; }
 .campo input:focus, .campo select:focus, .campo textarea:focus { outline: none; border-color: var(--verde); box-shadow: 0 0 0 3px rgba(0,135,90,.22); }
 .campo input:user-invalid, .campo select:user-invalid { border-color: var(--battito); }
 .consenso { grid-column: 1 / -1; display: flex; gap: .7rem; align-items: flex-start; font-size: .98rem; }
+.consenso .facoltativo { color: var(--testo-2); }
 .consenso input { width: 1.25rem; height: 1.25rem; margin-top: .2rem; accent-color: var(--verde); flex: none; }
 .trappola { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; overflow: hidden; }
 .modulo-azioni { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: .8rem; align-items: center; }
@@ -432,9 +434,27 @@ h4 { font-size: 1.45rem; font-weight: 600; line-height: 1.1; }
 .piede-nome { font-family: var(--f-titoli); font-size: 1.8rem; font-weight: 700; color: #fff; line-height: 1; margin-bottom: .5rem; }
 .piede details { margin-top: 1rem; }
 .piede summary { cursor: pointer; font-weight: 700; color: #fff; }
-.informativa { margin-top: 1rem; font-size: .92rem; max-width: 70ch; }
-.informativa h4 { font-family: var(--f-testo); font-size: 1rem; font-weight: 700; color: #fff; margin: 1rem 0 .3rem; }
-.piede-legale { margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,.15); font-size: .88rem; color: #A9C1B6; }
+.piede-legale { margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,.15); font-size: .9rem; color: #A9C1B6; display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; align-items: center; }
+.link-preferenze { background: none; border: 0; padding: 0; font: inherit; color: #9FE0C1; text-decoration: underline; text-underline-offset: .18em; cursor: pointer; }
+
+/* Banner cookie (compare solo se è configurato uno strumento di tracciamento) */
+.banner-cookie {
+  position: fixed; left: 1rem; right: 1rem; bottom: 1rem; z-index: 80; max-width: 40rem;
+  background: #fff; color: var(--inchiostro); border-radius: 16px; padding: 1.4rem 1.5rem 1.25rem;
+  box-shadow: 0 18px 50px -12px rgba(9,24,19,.45); border: 1px solid #D5E5DC;
+}
+.banner-cookie h2 { font-size: 1.6rem; max-width: none; margin: 0 2rem .4rem 0; }
+.banner-cookie p { font-size: .95rem; margin: 0 0 1rem; }
+.banner-chiudi { position: absolute; top: .6rem; right: .6rem; width: 2.5rem; height: 2.5rem; border: 0; background: none; font-size: 1.7rem; line-height: 1; color: var(--inchiostro); cursor: pointer; border-radius: 8px; }
+.banner-chiudi:hover { background: var(--verde-chiaro); }
+.banner-opzioni { border-top: 1px solid var(--verde-linea); margin: 0 0 1rem; padding-top: .9rem; display: grid; gap: .7rem; }
+.banner-opzioni label { display: flex; gap: .7rem; align-items: flex-start; font-size: .95rem; }
+.banner-opzioni input { width: 1.2rem; height: 1.2rem; margin-top: .2rem; accent-color: var(--verde); flex: none; }
+.banner-azioni { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; }
+.banner-azioni .bottone { min-height: 2.75rem; padding: .5rem 1.2rem; font-size: .98rem; }
+.banner-scelta { background: var(--inchiostro); color: #fff; }
+.banner-scelta:hover { background: #000; color: #fff; }
+.banner-personalizza { background: none; border: 0; font: 700 .95rem var(--f-testo); color: var(--verde-scuro); text-decoration: underline; cursor: pointer; padding: .4rem; }
 
 /* WhatsApp fisso */
 .whatsapp-fisso {
@@ -807,8 +827,12 @@ h4 { font-size: 1.45rem; font-weight: 600; line-height: 1.1; }
           <input id="sito-web" name="_honey" type="text" tabindex="-1" autocomplete="off">
         </div>
         <label class="consenso">
-          <input type="checkbox" name="Consenso privacy" value="Sì" required>
-          <span>Ho letto l'<a href="#informativa" id="link-informativa">informativa privacy</a> e acconsento all'uso dei miei dati per ricevere una risposta.</span>
+          <input type="checkbox" id="presa-visione" name="Informativa privacy letta" value="Sì" required>
+          <span>Ho letto l'<a href="privacy.html" target="_blank" rel="noopener">informativa privacy</a>.</span>
+        </label>
+        <label class="consenso">
+          <input type="checkbox" id="consenso-avvisi" name="Consenso avvisi nuovi corsi" value="Sì">
+          <span>Voglio ricevere via email o WhatsApp gli avvisi sulle nuove date dei corsi. <span class="facoltativo">Facoltativo, puoi revocarlo quando vuoi.</span></span>
         </label>
         <div class="modulo-azioni">
           <button class="bottone bottone-primario" type="submit" id="invia">Invia richiesta</button>
@@ -845,26 +869,31 @@ h4 { font-size: 1.45rem; font-weight: 600; line-height: 1.1; }
         <p>I contenuti del sito hanno scopo informativo e non sostituiscono un corso pratico. In caso di emergenza chiama il 112 o il 118.</p>
       </div>
     </div>
-    <details id="informativa">
-      <summary>Informativa privacy</summary>
-      <div class="informativa">
-        <h4>Titolare del trattamento</h4>
-        <p>Laura Corona, P.IVA 00000000000, email <a href="mailto:info@corsiblsdsardegna.it">info@corsiblsdsardegna.it</a>.</p>
-        <h4>Quali dati e perché</h4>
-        <p>Con il modulo contatti raccolgo nome, email e, se li indichi, telefono, azienda, numero di partecipanti e messaggio. Li uso solo per rispondere alla tua richiesta e organizzare il corso (art. 6.1.b del Regolamento UE 2016/679). Non li cedo a terzi per finalità commerciali.</p>
-        <h4>Come vengono trasmessi</h4>
-        <p>Il modulo inoltra il messaggio alla mia email tramite il servizio FormSubmit. Se scegli WhatsApp, la conversazione è gestita da WhatsApp secondo la sua informativa.</p>
-        <h4>Per quanto tempo</h4>
-        <p>Conservo i dati per il tempo necessario a gestire la richiesta e gli eventuali adempimenti legati al corso.</p>
-        <h4>I tuoi diritti</h4>
-        <p>Puoi chiedere accesso, correzione o cancellazione dei tuoi dati scrivendo all'email indicata, e puoi presentare reclamo al Garante per la protezione dei dati personali.</p>
-        <h4>Cookie</h4>
-        <p>Questo sito non usa cookie di profilazione né strumenti di tracciamento.</p>
-      </div>
-    </details>
-    <p class="piede-legale">© <span id="anno">2026</span> Laura Corona. P.IVA 00000000000</p>
+    <p class="piede-legale">
+      <span>© <span id="anno">2026</span> Laura Corona</span>
+      <!-- DA COMPLETARE: aggiungere qui la partita IVA, es. <span>P.IVA 01234567890</span> -->
+      <a href="privacy.html">Privacy policy</a>
+      <a href="cookie.html">Cookie policy</a>
+      <button type="button" class="link-preferenze" id="apri-preferenze" hidden>Preferenze cookie</button>
+    </p>
   </div>
 </footer>
+
+<div class="banner-cookie" id="banner-cookie" role="dialog" aria-labelledby="banner-titolo" aria-describedby="banner-testo" hidden>
+  <button type="button" class="banner-chiudi" id="banner-chiudi" aria-label="Chiudi e continua senza accettare">×</button>
+  <h2 id="banner-titolo">La tua privacy</h2>
+  <p id="banner-testo">Il sito usa solo strumenti tecnici necessari. Con il tuo consenso attiviamo anche <span id="banner-servizi">strumenti di statistica</span>, che ci aiutano a capire come viene usato il sito. Se chiudi con la X continui senza accettare. Dettagli nella <a href="cookie.html">cookie policy</a>.</p>
+  <div class="banner-opzioni" id="banner-opzioni" hidden>
+    <label><input type="checkbox" checked disabled> <span><strong>Necessari</strong>: servono al funzionamento del sito, sempre attivi.</span></label>
+    <label><input type="checkbox" id="consenso-statistiche"> <span><strong>Statistiche</strong>: misurano le visite in forma aggregata.</span></label>
+    <label id="riga-marketing" hidden><input type="checkbox" id="consenso-marketing"> <span><strong>Marketing</strong>: misurano l'efficacia delle pubblicità.</span></label>
+  </div>
+  <div class="banner-azioni">
+    <button type="button" class="bottone banner-scelta" id="banner-rifiuta">Rifiuta</button>
+    <button type="button" class="bottone banner-scelta" id="banner-accetta">Accetta</button>
+    <button type="button" class="banner-personalizza" id="banner-personalizza" aria-expanded="false">Personalizza</button>
+  </div>
+</div>
 
 <a class="whatsapp-fisso" data-whatsapp href="https://wa.me/393488804992" target="_blank" rel="noopener" aria-label="Scrivimi su WhatsApp">
   <svg aria-hidden="true"><use href="#icona-whatsapp"/></svg>
@@ -891,6 +920,15 @@ const CORSI = [
   { titolo: "BLSD adulto",       data: "2027-02-06", inizio: "09:00", fine: "14:00", citta: "Sassari",  luogo: "Sede comunicata all'iscrizione", posti: 12 }
 ];
 const URL_SITO = "https://www.corsiblsdsardegna.it/";
+
+/* STRUMENTI DI TRACCIAMENTO (oggi nessuno)
+   Se un giorno vuoi le statistiche o il pixel pubblicitario, inserisci qui l'ID:
+   il banner cookie comparirà da solo e lo strumento partirà solo dopo il consenso.
+   Ricordati di aggiornare anche cookie.html e privacy.html. */
+const TRACCIAMENTO = {
+  googleAnalyticsId: "",   // es. "G-ABC123XYZ"
+  metaPixelId: ""          // es. "123456789012345"
+};
 
 /* ===================================================================== */
 (function () {
@@ -1050,7 +1088,53 @@ const URL_SITO = "https://www.corsiblsdsardegna.it/";
     if (r) vaiAlModulo(r.dataset.richiesta);
   });
   selRichiesta.addEventListener("change", () => { if (selRichiesta.value !== "Iscrizione a un corso in calendario") { campoCorso.hidden = true; inCorso.value = ""; } });
-  $("#link-informativa").addEventListener("click", () => { $("#informativa").open = true; });
+
+  // Consenso cookie: attivo solo se è configurato uno strumento di tracciamento
+  (function gestioneConsenso() {
+    const servizi = { statistiche: !!TRACCIAMENTO.googleAnalyticsId, marketing: !!TRACCIAMENTO.metaPixelId };
+    if (!servizi.statistiche && !servizi.marketing) return;            // nessun tracciamento: nessun banner
+    const CHIAVE = "preferenze-cookie", DURATA = 1000 * 60 * 60 * 24 * 182; // la scelta vale 6 mesi
+    const banner = $("#banner-cookie"), opzioni = $("#banner-opzioni"), pers = $("#banner-personalizza");
+    const cStat = $("#consenso-statistiche"), cMkt = $("#consenso-marketing");
+    if (!servizi.statistiche) cStat.closest("label").hidden = true;
+    if (servizi.marketing) $("#riga-marketing").hidden = false;
+    $("#banner-servizi").textContent = [servizi.statistiche && "strumenti di statistica", servizi.marketing && "strumenti di marketing"].filter(Boolean).join(" e ");
+    $("#apri-preferenze").hidden = false;
+
+    const leggi = () => { try { const v = JSON.parse(localStorage.getItem(CHIAVE)); return v && (Date.now() - v.data < DURATA) ? v : null; } catch (e) { return null; } };
+    const salva = (stat, mkt) => { const v = { statistiche: stat, marketing: mkt, data: Date.now() }; try { localStorage.setItem(CHIAVE, JSON.stringify(v)); } catch (e) {} applica(v); chiudi(); };
+    const caricati = {};
+    function applica(v) {
+      if (v.statistiche && servizi.statistiche && !caricati.ga) {
+        caricati.ga = true;
+        const sc = document.createElement("script"); sc.async = true; sc.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(TRACCIAMENTO.googleAnalyticsId); document.head.appendChild(sc);
+        window.dataLayer = window.dataLayer || []; window.gtag = function () { dataLayer.push(arguments); };
+        gtag("js", new Date()); gtag("config", TRACCIAMENTO.googleAnalyticsId);
+      }
+      if (v.marketing && servizi.marketing && !caricati.px) {
+        caricati.px = true;
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");
+        fbq("init", TRACCIAMENTO.metaPixelId); fbq("track", "PageView");
+      }
+    }
+    function apri(conOpzioni) {
+      const v = leggi();
+      cStat.checked = !!(v && v.statistiche); cMkt.checked = !!(v && v.marketing);
+      opzioni.hidden = !conOpzioni; pers.textContent = conOpzioni ? "Salva le scelte" : "Personalizza"; pers.setAttribute("aria-expanded", conOpzioni ? "true" : "false");
+      banner.hidden = false; $("#banner-accetta").focus({ preventScroll: true });
+    }
+    function chiudi() { banner.hidden = true; }
+
+    $("#banner-chiudi").addEventListener("click", () => salva(false, false));
+    $("#banner-rifiuta").addEventListener("click", () => salva(false, false));
+    $("#banner-accetta").addEventListener("click", () => salva(servizi.statistiche, servizi.marketing));
+    pers.addEventListener("click", () => { if (opzioni.hidden) apri(true); else salva(cStat.checked && servizi.statistiche, cMkt.checked && servizi.marketing); });
+    $("#apri-preferenze").addEventListener("click", () => apri(true));
+
+    const scelta = leggi();
+    if (scelta) applica(scelta); else apri(false);
+    if (location.hash === "#preferenze-cookie") apri(true);
+  })();
 
   // Invio del modulo
   const stato = $("#stato-modulo"), invia = $("#invia");
@@ -1071,13 +1155,14 @@ const URL_SITO = "https://www.corsiblsdsardegna.it/";
     if (!modulo.checkValidity()) {
       const primo = modulo.querySelector(":invalid");
       const nomi = { nome: "il nome", email: "un'email valida", richiesta: "cosa ti serve" };
-      mostraStato(primo.type === "checkbox" ? "Per inviare la richiesta serve il consenso all'informativa privacy." : "Inserisci " + (nomi[primo.id] || "i campi obbligatori") + " per inviare la richiesta.", "errore");
+      mostraStato(primo.type === "checkbox" ? "Per inviare la richiesta conferma di aver letto l'informativa privacy." : "Inserisci " + (nomi[primo.id] || "i campi obbligatori") + " per inviare la richiesta.", "errore");
       primo.focus();
       return;
     }
     if ($("#sito-web").value) return; // spam
     const dati = Object.fromEntries(new FormData(modulo));
     delete dati._honey;
+    dati["Consenso avvisi nuovi corsi"] = $("#consenso-avvisi").checked ? "Sì" : "No";
     dati._subject = "Richiesta dal sito: " + dati.Richiesta + (dati.Corso ? " – " + dati.Corso : "");
     dati._template = "table";
     dati._captcha = "false";
