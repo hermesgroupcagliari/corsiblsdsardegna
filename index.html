@@ -914,7 +914,7 @@ const CONFIG = {
    Aggiungi, modifica o elimina le righe. Data nel formato AAAA-MM-GG.
    I corsi con data passata spariscono da soli. posti: 0 = completo. */
 const CORSI = [
-  { titolo: "BLSD adulto",       data: "2026-11-28", inizio: "09:00", fine: "14:00", citta: "Cagliari", luogo: "Sede comunicata all'iscrizione", posti: 8 },
+  { titolo: "BLSD adulto",       data: "2026-11-28", inizio: "09:00", fine: "14:00", citta: "Guspini (SU)", luogo: "Sede comunicata all'iscrizione", posti: 8 },
   { titolo: "PBLSD pediatrico",  data: "2026-12-12", inizio: "09:00", fine: "14:00", citta: "Oristano", luogo: "Sede comunicata all'iscrizione", posti: 10 },
   { titolo: "Retraining BLSD",   data: "2027-01-16", inizio: "15:00", fine: "18:00", citta: "Cagliari", luogo: "Sede comunicata all'iscrizione", posti: 3 },
   { titolo: "BLSD adulto",       data: "2027-02-06", inizio: "09:00", fine: "14:00", citta: "Sassari",  luogo: "Sede comunicata all'iscrizione", posti: 12 }
@@ -1062,7 +1062,7 @@ const TRACCIAMENTO = {
       endDate: c.data + "T" + c.fine + ":00" + fusoItalia(c.quando),
       eventStatus: "https://schema.org/EventScheduled",
       eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
-      location: { "@type": "Place", name: c.luogo || c.citta, address: { "@type": "PostalAddress", addressLocality: c.citta, addressRegion: "Sardegna", addressCountry: "IT" } },
+      location: { "@type": "Place", name: c.luogo || c.citta, address: { "@type": "PostalAddress", addressLocality: c.citta.replace(/\s*\(.*\)\s*$/, ""), addressRegion: "Sardegna", addressCountry: "IT" } },
       organizer: { "@type": "Person", name: "Laura Corona", url: URL_SITO },
       performer: { "@type": "Person", name: "Laura Corona" },
       url: URL_SITO + "#prossimi-corsi"
